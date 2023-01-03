@@ -4,10 +4,13 @@ const server = require("http").createServer(app);
 const io = require("socket.io")(server);
 const database = require("./utils/moongose");
 const Chat = require("./models/chat");
+const cors = require("cors");
 
 app.use(express.static("client/build"));
 
 database();
+
+app.use(cors());
 
 io.on("connection", (socket) => {
   console.log("user connected");
